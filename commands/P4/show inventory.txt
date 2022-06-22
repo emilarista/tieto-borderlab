@@ -1,0 +1,15 @@
+System information
+  Model                    Description                                         
+  ------------------------ ----------------------------------------------------
+  vEOS-lab                 vEOS for lab use                                    
+
+  HW Version  Serial Number                    Mfg Date   Epoch
+  ----------- -------------------------------- ---------- -----
+              98CD3DDD825E869AED91E3AB1A661DC1                 
+
+System has 9 ports
+  Type               Count
+  ------------------ ----
+  Management         1   
+  Switched           6   
+  SwitchedBootstrap  2

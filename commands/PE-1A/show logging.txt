@@ -1,0 +1,160 @@
+Syslog logging: enabled
+Buffer logging: level debugging
+Console logging: level errors
+Persistent logging: disabled
+Monitor logging: level errors
+Synchronous logging: disabled
+Trap logging: level informational
+Sequence numbers: disabled
+Syslog facility: local4
+Hostname format: Hostname only
+Repeat logging interval: disabled
+Repeat messages: disabled
+Root login logging: disabled
+
+External configuration:
+    active: 
+    inactive: 
+
+Facility                   Severity            Effective Severity
+--------------------       -------------       ------------------
+aaa                        debugging           debugging    
+accounting                 debugging           debugging    
+acl                        debugging           debugging    
+agent                      debugging           debugging    
+ale                        debugging           debugging    
+arp                        debugging           debugging    
+bfd                        debugging           debugging    
+bgp                        debugging           debugging    
+bmp                        debugging           debugging    
+capacity                   debugging           debugging    
+capi                       debugging           debugging    
+clear                      debugging           debugging    
+cvx                        debugging           debugging    
+dataplane                  debugging           debugging    
+dhcp                       debugging           debugging    
+dmf                        debugging           debugging    
+dot1x                      debugging           debugging    
+dot1xhttp                  debugging           debugging    
+dscp                       debugging           debugging    
+envmon                     debugging           debugging    
+eth                        debugging           debugging    
+eventmon                   debugging           debugging    
+extension                  debugging           debugging    
+fhrp                       debugging           debugging    
+flow                       debugging           debugging    
+forwarding                 debugging           debugging    
+fru                        debugging           debugging    
+fwk                        debugging           debugging    
+gmp                        debugging           debugging    
+hardware                   debugging           debugging    
+health                     debugging           debugging    
+httpservice                debugging           debugging    
+igmp                       debugging           debugging    
+igmpsnooping               debugging           debugging    
+influxtelemetry            debugging           debugging    
+int                        debugging           debugging    
+intf                       debugging           debugging    
+ip6routing                 debugging           debugging    
+iprib                      debugging           debugging    
+ira                        debugging           debugging    
+isis                       debugging           debugging    
+kernelfib                  debugging           debugging    
+lacp                       debugging           debugging    
+lag                        debugging           debugging    
+launcher                   debugging           debugging    
+ldp                        debugging           debugging    
+license                    debugging           debugging    
+lineproto                  debugging           debugging    
+lldp                       debugging           debugging    
+loadbalancer               debugging           debugging    
+logmgr                     debugging           debugging    
+loopback                   debugging           debugging    
+loopprotect                debugging           debugging    
+mapreducemonitor           debugging           debugging    
+mcs                        debugging           debugging    
+mirroring                  debugging           debugging    
+mka                        debugging           debugging    
+mlag                       debugging           debugging    
+mldsnooping                debugging           debugging    
+mmode                      debugging           debugging    
+mroute                     debugging           debugging    
+mrp                        debugging           debugging    
+msdp                       debugging           debugging    
+msrp                       debugging           debugging    
+msspolicymonitor           debugging           debugging    
+mvrp                       debugging           debugging    
+nat                        debugging           debugging    
+openconfig                 debugging           debugging    
+openflow                   debugging           debugging    
+ospf                       debugging           debugging    
+ospf3                      debugging           debugging    
+package                    debugging           debugging    
+pfc                        debugging           debugging    
+pimbsr                     debugging           debugging    
+portsecurity               debugging           debugging    
+postcardtelemetry          debugging           debugging    
+pseudowire                 debugging           debugging    
+ptp                        debugging           debugging    
+pwrmgmt                    debugging           debugging    
+qos                        debugging           debugging    
+queuemonitor               debugging           debugging    
+radius                     debugging           debugging    
+redundancy                 debugging           debugging    
+rib                        debugging           debugging    
+routing                    debugging           debugging    
+security                   debugging           debugging    
+servermonitor              debugging           debugging    
+spantree                   debugging           debugging    
+sso                        debugging           debugging    
+stagemgr                   debugging           debugging    
+sys                        debugging           debugging    
+sysdb                      debugging           debugging    
+tapagg                     debugging           debugging    
+tcp                        debugging           debugging    
+trafficpolicy              debugging           debugging    
+transceiver                debugging           debugging    
+tunnel                     debugging           debugging    
+tunnelintf                 debugging           debugging    
+vmtracersess               debugging           debugging    
+vmwarevi                   debugging           debugging    
+vmwarevs                   debugging           debugging    
+vrf                        debugging           debugging    
+vrrp                       debugging           debugging    
+vxlan                      debugging           debugging    
+xmpp                       debugging           debugging    
+ztp                        debugging           debugging    
+
+Log Buffer:
+May  9 16:10:46 PE-1A ConfigAgent: %SYS-5-CONFIG_STARTUP: Startup config saved from system:/running-config by cvpadmin on TerminAttr (localhost).
+May  9 16:10:58 PE-1A Stp: %SPANTREE-6-STABLE_CHANGE: Stp state is now stable
+May  9 16:13:35 PE-1A Ebra: %LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet4 (ROUTED_PORTS_CPE1), changed state to down
+May  9 16:31:23 PE-1A Ebra: %LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet4, changed state to up
+May  9 16:31:23 PE-1A Stp: %SPANTREE-6-STABLE_CHANGE: Stp state is now not stable
+May  9 16:31:23 PE-1A Stp: %SPANTREE-6-INTERFACE_ADD: Interface Ethernet4 has been added to instance MST0
+May  9 16:31:43 PE-1A Stp: %SPANTREE-6-INTERFACE_STATE: Interface Ethernet4 instance MST0 moving from discarding to learning
+May  9 16:31:43 PE-1A Stp: %SPANTREE-6-INTERFACE_STATE: Interface Ethernet4 instance MST0 moving from learning to forwarding
+May  9 16:32:13 PE-1A Stp: %SPANTREE-6-STABLE_CHANGE: Stp state is now stable
+May  9 16:33:18 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpsystem entered configuration session capiVerify-2188-bbb3941acfb511ecb569500000cb38c2 on TerminAttr (localhost)
+May  9 16:33:21 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpsystem exited configuration session capiVerify-2188-bbb3941acfb511ecb569500000cb38c2 on TerminAttr (localhost)
+May  9 16:33:21 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_ABORTED: User cvpsystem aborted configuration session capiVerify-2188-bbb3941acfb511ecb569500000cb38c2 on TerminAttr (localhost)
+May  9 16:34:00 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpadmin entered configuration session CVP-configtask-ff4f8885-f1bc-436b-a0da-da0ec41241bf on TerminAttr (localhost)
+May  9 16:34:03 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-ff4f8885-f1bc-436b-a0da-da0ec41241bf on TerminAttr (localhost)
+May  9 16:34:05 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpadmin entered configuration session CVP-configtask-ff4f8885-f1bc-436b-a0da-da0ec41241bf on TerminAttr (localhost)
+May  9 16:34:06 PE-1A Stp: %SPANTREE-6-STABLE_CHANGE: Stp state is now not stable
+May  9 16:34:06 PE-1A Stp: %SPANTREE-6-INTERFACE_DEL: Interface Ethernet4 has been removed from instance MST0
+May  9 16:34:07 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_TIMER_STARTED: User cvpadmin committed session CVP-configtask-ff4f8885-f1bc-436b-a0da-da0ec41241bf on TerminAttr (localhost), with timer 0:4:0(hr:min:sec).
+May  9 16:34:07 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-ff4f8885-f1bc-436b-a0da-da0ec41241bf on TerminAttr (localhost)
+May  9 16:34:19 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_SUCCESS: User cvpadmin committed configuration session CVP-configtask-ff4f8885-f1bc-436b-a0da-da0ec41241bf successfully on TerminAttr (localhost)
+May  9 16:34:21 PE-1A ConfigAgent: %SYS-5-CONFIG_STARTUP: Startup config saved from system:/running-config by cvpadmin on TerminAttr (localhost).
+May  9 16:34:36 PE-1A Stp: %SPANTREE-6-STABLE_CHANGE: Stp state is now stable
+May 10 09:09:19 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpsystem entered configuration session capiVerify-2188-df8c9612d04011ec992e500000cb38c2 on TerminAttr (localhost)
+May 10 09:09:26 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpsystem exited configuration session capiVerify-2188-df8c9612d04011ec992e500000cb38c2 on TerminAttr (localhost)
+May 10 09:09:26 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_ABORTED: User cvpsystem aborted configuration session capiVerify-2188-df8c9612d04011ec992e500000cb38c2 on TerminAttr (localhost)
+May 10 09:10:15 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpadmin entered configuration session CVP-configtask-cd72680f-6f7c-4b53-b89d-d317f1948a38 on TerminAttr (localhost)
+May 10 09:10:24 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-cd72680f-6f7c-4b53-b89d-d317f1948a38 on TerminAttr (localhost)
+May 10 09:10:27 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpadmin entered configuration session CVP-configtask-cd72680f-6f7c-4b53-b89d-d317f1948a38 on TerminAttr (localhost)
+May 10 09:10:31 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_TIMER_STARTED: User cvpadmin committed session CVP-configtask-cd72680f-6f7c-4b53-b89d-d317f1948a38 on TerminAttr (localhost), with timer 0:4:0(hr:min:sec).
+May 10 09:10:31 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-cd72680f-6f7c-4b53-b89d-d317f1948a38 on TerminAttr (localhost)
+May 10 09:10:45 PE-1A ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_SUCCESS: User cvpadmin committed configuration session CVP-configtask-cd72680f-6f7c-4b53-b89d-d317f1948a38 successfully on TerminAttr (localhost)
+May 10 09:10:49 PE-1A ConfigAgent: %SYS-5-CONFIG_STARTUP: Startup config saved from system:/running-config by cvpadmin on TerminAttr (localhost).

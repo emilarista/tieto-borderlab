@@ -1,0 +1,7 @@
+Maximum number of VRFs allowed: 1024
+   VRF           Protocols       State         Interfaces             
+------------- --------------- ---------------- -----------------------
+   MGMT          IPv4            no routing    Ma1                    
+   MGMT          IPv6            no routing                           
+   default       IPv4            routing       Et1, Et2, Et3, Et5, Lo0
+   default       IPv6            no routing

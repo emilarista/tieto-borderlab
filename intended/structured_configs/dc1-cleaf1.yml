@@ -1,0 +1,298 @@
+router_bgp:
+  as: '65102'
+  router_id: 100.64.11.13
+  bgp_defaults:
+  - no bgp default ipv4-unicast
+  - distance bgp 20 200 200
+  - graceful-restart restart-time 300
+  - graceful-restart
+  - maximum-paths 4 ecmp 4
+  peer_groups:
+    IPv4-UNDERLAY-PEERS:
+      type: ipv4
+      password: $1c$U4tL2vQP9QwZlxIV1K3/pw==
+      maximum_routes: 12000
+      send_community: all
+    EVPN-OVERLAY-PEERS:
+      type: evpn
+      update_source: Loopback0
+      bfd: true
+      ebgp_multihop: '10'
+      password: $1c$U4tL2vQP9QwZlxIV1K3/pw==
+      send_community: all
+      maximum_routes: 0
+  address_family_ipv4:
+    peer_groups:
+      IPv4-UNDERLAY-PEERS:
+        activate: true
+      EVPN-OVERLAY-PEERS:
+        activate: false
+  redistribute_routes:
+    connected:
+      route_map: RM-CONN-2-BGP
+  neighbors:
+    100.64.10.16:
+      peer_group: IPv4-UNDERLAY-PEERS
+      remote_as: '65001'
+      description: dc1-spine1_Ethernet3
+    100.64.11.1:
+      peer_group: EVPN-OVERLAY-PEERS
+      description: dc1-spine1
+      remote_as: '65001'
+      route_map_out: RM-EVPN-FILTER-AS65001
+  address_family_evpn:
+    peer_groups:
+      EVPN-OVERLAY-PEERS:
+        activate: true
+    evpn_hostflap_detection:
+      window: 180
+      threshold: 15
+      enabled: true
+  address_family_rtc:
+    peer_groups:
+      EVPN-OVERLAY-PEERS:
+        activate: true
+  vrfs:
+    TENANT_A_INSIDE:
+      router_id: 100.64.11.13
+      rd: 100.64.11.13:11
+      route_targets:
+        import:
+          evpn:
+          - '64512:11'
+        export:
+          evpn:
+          - '64512:11'
+      redistribute_routes:
+      - connected
+    TENANT_A_OUTSIDE:
+      router_id: 100.64.11.13
+      rd: 100.64.11.13:10
+      route_targets:
+        import:
+          evpn:
+          - '64512:10'
+        export:
+          evpn:
+          - '64512:10'
+      redistribute_routes:
+      - connected
+  vlans:
+    10:
+      tenant: TENANT_A
+      rd: 100.64.11.13:10010
+      route_targets:
+        both:
+        - 64512:10010
+      redistribute_routes:
+      - learned
+    20:
+      tenant: TENANT_A
+      rd: 100.64.11.13:10020
+      route_targets:
+        both:
+        - 64512:10020
+      redistribute_routes:
+      - learned
+    1111:
+      tenant: TENANT_A
+      rd: 100.64.11.13:11111
+      route_targets:
+        both:
+        - 64512:11111
+      redistribute_routes:
+      - learned
+    1010:
+      tenant: TENANT_A
+      rd: 100.64.11.13:11010
+      route_targets:
+        both:
+        - 64512:11010
+      redistribute_routes:
+      - learned
+static_routes:
+- vrf: MGMT
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 10.83.28.1
+service_routing_protocols_model: multi-agent
+ip_routing: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 3700
+    ending: 3900
+event_handlers:
+  evpn-blacklist-recovery:
+    action_type: bash
+    action: FastCli -p 15 -c "clear bgp evpn host-flap"
+    delay: 300
+    asynchronous: handler.asynchronous
+    trigger: on-logging
+    regex: EVPN-3-BLACKLISTED_DUPLICATE_MAC
+name_server:
+  source:
+    vrf: MGMT
+  nodes:
+  - 10.100.163.10
+spanning_tree:
+  mode: mstp
+  mst_instances:
+    '0':
+      priority: 4096
+local_users:
+  admin:
+    privilege: 15
+    role: network-admin
+    no_password: true
+  ansible:
+    privilege: 15
+    role: network-admin
+    sha512_password: $6$tYUvq9vOikmr2wzF$9nUXlgG5xYINfUEPUl4sRgSEXpswnlnrRjTNDHUTFTquj6at4ze3ypxhEupp0lIJaIzlaFj4nJxWtKgSOuyuE1
+  cvp-infra:
+    privilege: 15
+    sha512_password: $6$.I7/ZR/zlLIUv8fr$vR/JvLTbq5amMt6Y1SE4CKlPDv/AzJYlFYHkUZ17BDovm0Oi4aLdBULe1EmZ0Y9xKjVLMKpxCSKmlrAioDxbQ0
+  switch-infra:
+    privilege: 15
+    no_password: true
+vrfs:
+  MGMT:
+    ip_routing: false
+  TENANT_A_INSIDE:
+    tenant: TENANT_A
+    ip_routing: true
+  TENANT_A_OUTSIDE:
+    tenant: TENANT_A
+    ip_routing: true
+management_interfaces:
+  Management1:
+    description: oob_management
+    shutdown: false
+    vrf: MGMT
+    ip_address: 10.83.31.245/22
+    gateway: 10.83.28.1
+    type: oob
+management_api_http:
+  enable_vrfs:
+    MGMT: {}
+  enable_https: true
+ethernet_interfaces:
+  Ethernet1:
+    peer: dc1-spine1
+    peer_interface: Ethernet3
+    peer_type: spine
+    description: P2P_LINK_TO_DC1-SPINE1_Ethernet3
+    mtu: 1500
+    type: routed
+    shutdown: false
+    ip_address: 100.64.10.17/31
+loopback_interfaces:
+  Loopback0:
+    description: EVPN_Overlay_Peering
+    shutdown: false
+    ip_address: 100.64.11.13/32
+  Loopback1:
+    description: VTEP_VXLAN_Tunnel_Source
+    shutdown: false
+    ip_address: 100.64.12.13/32
+    ip_address_secondaries:
+    - 100.64.255.255/32
+prefix_lists:
+  PL-LOOPBACKS-EVPN-OVERLAY:
+    sequence_numbers:
+      10:
+        action: permit 100.64.11.0/24 eq 32
+      20:
+        action: permit 100.64.12.0/24 eq 32
+      30:
+        action: permit 100.64.255.255/32
+route_maps:
+  RM-CONN-2-BGP:
+    sequence_numbers:
+      10:
+        type: permit
+        match:
+        - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+  RM-EVPN-FILTER-AS65001:
+    sequence_numbers:
+      10:
+        type: deny
+        match:
+        - as 65001
+      20:
+        type: permit
+router_bfd:
+  multihop:
+    interval: 12000
+    min_rx: 12000
+    multiplier: 3
+vlans:
+  10:
+    tenant: TENANT_A
+    name: TENANT_A_INSIDE_L3_TEST_1
+  20:
+    tenant: TENANT_A
+    name: TENANT_A_INSIDE_L3_TEST_2
+  1111:
+    tenant: TENANT_A
+    name: FW-INSIDE
+  1010:
+    tenant: TENANT_A
+    name: TENANT_A_OUTSIDE_FW
+ip_igmp_snooping:
+  globally_enabled: true
+ip_virtual_router_mac_address: 00:1c:73:00:dc:00
+vlan_interfaces:
+  Vlan10:
+    tenant: TENANT_A
+    tags:
+    - dc
+    description: TENANT_A_INSIDE_L3_TEST_1
+    shutdown: false
+    vrf: TENANT_A_INSIDE
+    ip_address_virtual: 10.0.1.1/24
+  Vlan20:
+    tenant: TENANT_A
+    tags:
+    - dc
+    description: TENANT_A_INSIDE_L3_TEST_2
+    shutdown: false
+    vrf: TENANT_A_INSIDE
+    ip_address_virtual: 10.0.2.1/24
+  Vlan1111:
+    tenant: TENANT_A
+    tags:
+    - fw_conn
+    description: FW-INSIDE
+    shutdown: false
+    vrf: TENANT_A_INSIDE
+    ip_virtual_router_addresses:
+    - 10.0.254.1
+  Vlan1010:
+    tenant: TENANT_A
+    tags:
+    - fw_conn
+    description: TENANT_A_OUTSIDE_FW
+    shutdown: false
+    vrf: TENANT_A_OUTSIDE
+    ip_virtual_router_addresses:
+    - 10.0.255.1
+vxlan_interface:
+  Vxlan1:
+    description: dc1-cleaf1_VTEP
+    vxlan:
+      source_interface: Loopback1
+      udp_port: 4789
+      vlans:
+        10:
+          vni: 10010
+        20:
+          vni: 10020
+        1111:
+          vni: 11111
+        1010:
+          vni: 11010
+      vrfs:
+        TENANT_A_INSIDE:
+          vni: 11
+        TENANT_A_OUTSIDE:
+          vni: 10

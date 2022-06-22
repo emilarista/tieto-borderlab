@@ -1,0 +1,29 @@
+---
+# RD/RT Format
+overlay_rd_type:
+  admin_subfield: overlay_loopback
+overlay_rt_type:
+  admin_subfield: 65000
+
+# tenants:
+#   TENANT_A:
+#     vrfs:
+#       TENANT_A_INSIDE:
+#         address_families:
+#           - vpn-ipv4
+#         vrf_id: 10
+#         l3_interfaces:
+#           - interfaces: [ Ethernet5/1.10 ]
+#             nodes: [ lp032 ]
+#             ip_addresses: [ 192.168.10.1/24 ]
+
+#   TENANT_B:
+#     vrfs:
+#       TENANT_B_INSIDE:
+#         address_families:
+#           - vpn-ipv4
+#         vrf_id: 20
+#         l3_interfaces:
+#           - interfaces: [ Ethernet5/1.20 ]
+#             nodes: [ lp032 ]
+#             ip_addresses: [ 192.168.20.1/24 ]

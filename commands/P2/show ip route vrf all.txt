@@ -1,0 +1,50 @@
+VRF: default
+Codes: C - connected, S - static, K - kernel, 
+       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
+       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
+       N2 - OSPF NSSA external type2, B - Other BGP Routes,
+       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
+       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
+       A O - OSPF Summary, NG - Nexthop Group Static Route,
+       V - VXLAN Control Service, M - Martian,
+       DH - DHCP client installed default route,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       G  - gRIBI, RC - Route Cache Route
+
+Gateway of last resort is not set
+
+ C        100.64.48.0/31 is directly connected, Ethernet1
+ C        100.64.48.6/31 is directly connected, Ethernet2
+ C        100.64.48.8/31 is directly connected, Ethernet3
+ I L2     100.70.0.11/32 [115/110] via 100.64.48.0, Ethernet1
+ I L2     100.70.0.12/32 [115/60] via 100.64.48.6, Ethernet2
+ I L2     100.70.0.13/32 [115/160] via 100.64.48.0, Ethernet1
+                                   via 100.64.48.9, Ethernet3
+ I L2     100.70.0.14/32 [115/110] via 100.64.48.9, Ethernet3
+ I L2     100.70.0.21/32 [115/110] via 100.64.48.0, Ethernet1
+ I L2     100.70.0.31/32 [115/60] via 100.64.48.0, Ethernet1
+ C        100.70.0.32/32 is directly connected, Loopback0
+ I L2     100.70.0.33/32 [115/110] via 100.64.48.0, Ethernet1
+                                   via 100.64.48.9, Ethernet3
+ I L2     100.70.0.34/32 [115/60] via 100.64.48.9, Ethernet3
+
+
+VRF: MGMT
+Codes: C - connected, S - static, K - kernel, 
+       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
+       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
+       N2 - OSPF NSSA external type2, B - Other BGP Routes,
+       B I - iBGP, B E - eBGP, R - RIP, I L1 - IS-IS level 1,
+       I L2 - IS-IS level 2, O3 - OSPFv3, A B - BGP Aggregate,
+       A O - OSPF Summary, NG - Nexthop Group Static Route,
+       V - VXLAN Control Service, M - Martian,
+       DH - DHCP client installed default route,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       G  - gRIBI, RC - Route Cache Route
+
+Gateway of last resort:
+ S        0.0.0.0/0 [1/0] via 10.30.30.1, Management1
+
+ C        10.30.30.0/24 is directly connected, Management1
+
+! IP routing not enabled

@@ -1,0 +1,13 @@
+System temperature status is: Unknown
+Action on overheat: shutdown
+Recovery mode when power-cycle upon overheat: not applicable
+Restrict recovery when ambient temperature is at or above: not applicable
+
+System cooling status is: Unknown
+Ambient temperature: Unknown
+Number of cooling zones is: 1
+           Config Actual        Speed     Stable
+Fan Status  Speed  Speed Uptime Stability Uptime
+--- ------ ------ ------ ------ --------- ------
+
+% There seem to be no power supplies connected.

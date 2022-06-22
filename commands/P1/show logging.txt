@@ -1,0 +1,160 @@
+Syslog logging: enabled
+Buffer logging: level debugging
+Console logging: level errors
+Persistent logging: disabled
+Monitor logging: level errors
+Synchronous logging: disabled
+Trap logging: level informational
+Sequence numbers: disabled
+Syslog facility: local4
+Hostname format: Hostname only
+Repeat logging interval: disabled
+Repeat messages: disabled
+Root login logging: disabled
+
+External configuration:
+    active: 
+    inactive: 
+
+Facility                   Severity            Effective Severity
+--------------------       -------------       ------------------
+aaa                        debugging           debugging    
+accounting                 debugging           debugging    
+acl                        debugging           debugging    
+agent                      debugging           debugging    
+ale                        debugging           debugging    
+arp                        debugging           debugging    
+bfd                        debugging           debugging    
+bgp                        debugging           debugging    
+bmp                        debugging           debugging    
+capacity                   debugging           debugging    
+capi                       debugging           debugging    
+clear                      debugging           debugging    
+cvx                        debugging           debugging    
+dataplane                  debugging           debugging    
+dhcp                       debugging           debugging    
+dmf                        debugging           debugging    
+dot1x                      debugging           debugging    
+dot1xhttp                  debugging           debugging    
+dscp                       debugging           debugging    
+envmon                     debugging           debugging    
+eth                        debugging           debugging    
+eventmon                   debugging           debugging    
+extension                  debugging           debugging    
+fhrp                       debugging           debugging    
+flow                       debugging           debugging    
+forwarding                 debugging           debugging    
+fru                        debugging           debugging    
+fwk                        debugging           debugging    
+gmp                        debugging           debugging    
+hardware                   debugging           debugging    
+health                     debugging           debugging    
+httpservice                debugging           debugging    
+igmp                       debugging           debugging    
+igmpsnooping               debugging           debugging    
+influxtelemetry            debugging           debugging    
+int                        debugging           debugging    
+intf                       debugging           debugging    
+ip6routing                 debugging           debugging    
+iprib                      debugging           debugging    
+ira                        debugging           debugging    
+isis                       debugging           debugging    
+kernelfib                  debugging           debugging    
+lacp                       debugging           debugging    
+lag                        debugging           debugging    
+launcher                   debugging           debugging    
+ldp                        debugging           debugging    
+license                    debugging           debugging    
+lineproto                  debugging           debugging    
+lldp                       debugging           debugging    
+loadbalancer               debugging           debugging    
+logmgr                     debugging           debugging    
+loopback                   debugging           debugging    
+loopprotect                debugging           debugging    
+mapreducemonitor           debugging           debugging    
+mcs                        debugging           debugging    
+mirroring                  debugging           debugging    
+mka                        debugging           debugging    
+mlag                       debugging           debugging    
+mldsnooping                debugging           debugging    
+mmode                      debugging           debugging    
+mroute                     debugging           debugging    
+mrp                        debugging           debugging    
+msdp                       debugging           debugging    
+msrp                       debugging           debugging    
+msspolicymonitor           debugging           debugging    
+mvrp                       debugging           debugging    
+nat                        debugging           debugging    
+openconfig                 debugging           debugging    
+openflow                   debugging           debugging    
+ospf                       debugging           debugging    
+ospf3                      debugging           debugging    
+package                    debugging           debugging    
+pfc                        debugging           debugging    
+pimbsr                     debugging           debugging    
+portsecurity               debugging           debugging    
+postcardtelemetry          debugging           debugging    
+pseudowire                 debugging           debugging    
+ptp                        debugging           debugging    
+pwrmgmt                    debugging           debugging    
+qos                        debugging           debugging    
+queuemonitor               debugging           debugging    
+radius                     debugging           debugging    
+redundancy                 debugging           debugging    
+rib                        debugging           debugging    
+routing                    debugging           debugging    
+security                   debugging           debugging    
+servermonitor              debugging           debugging    
+spantree                   debugging           debugging    
+sso                        debugging           debugging    
+stagemgr                   debugging           debugging    
+sys                        debugging           debugging    
+sysdb                      debugging           debugging    
+tapagg                     debugging           debugging    
+tcp                        debugging           debugging    
+trafficpolicy              debugging           debugging    
+transceiver                debugging           debugging    
+tunnel                     debugging           debugging    
+tunnelintf                 debugging           debugging    
+vmtracersess               debugging           debugging    
+vmwarevi                   debugging           debugging    
+vmwarevs                   debugging           debugging    
+vrf                        debugging           debugging    
+vrrp                       debugging           debugging    
+vxlan                      debugging           debugging    
+xmpp                       debugging           debugging    
+ztp                        debugging           debugging    
+
+Log Buffer:
+Apr 25 09:29:15 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-d605482e-22d4-4c02-80b4-a40dd0452957 on TerminAttr (localhost)
+Apr 25 09:29:27 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_SUCCESS: User cvpadmin committed configuration session CVP-configtask-d605482e-22d4-4c02-80b4-a40dd0452957 successfully on TerminAttr (localhost)
+Apr 25 09:29:29 P1 ConfigAgent: %SYS-5-CONFIG_STARTUP: Startup config saved from system:/running-config by cvpadmin on TerminAttr (localhost).
+Apr 25 13:02:07 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpsystem entered configuration session capiVerify-2215-e939b8dec49711ec9e99020000000000 on TerminAttr (localhost)
+Apr 25 13:02:11 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpsystem exited configuration session capiVerify-2215-e939b8dec49711ec9e99020000000000 on TerminAttr (localhost)
+Apr 25 13:02:11 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ABORTED: User cvpsystem aborted configuration session capiVerify-2215-e939b8dec49711ec9e99020000000000 on TerminAttr (localhost)
+Apr 25 13:06:27 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpsystem entered configuration session capiVerify-2215-843d04dac49811ecac03020000000000 on TerminAttr (localhost)
+Apr 25 13:06:30 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpsystem exited configuration session capiVerify-2215-843d04dac49811ecac03020000000000 on TerminAttr (localhost)
+Apr 25 13:06:30 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ABORTED: User cvpsystem aborted configuration session capiVerify-2215-843d04dac49811ecac03020000000000 on TerminAttr (localhost)
+Apr 25 13:07:08 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpadmin entered configuration session CVP-configtask-eb0d7491-e91a-4bdc-afb0-a407de1af3a4 on TerminAttr (localhost)
+Apr 25 13:07:13 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-eb0d7491-e91a-4bdc-afb0-a407de1af3a4 on TerminAttr (localhost)
+Apr 25 13:07:14 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpadmin entered configuration session CVP-configtask-eb0d7491-e91a-4bdc-afb0-a407de1af3a4 on TerminAttr (localhost)
+Apr 25 13:07:17 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_TIMER_STARTED: User cvpadmin committed session CVP-configtask-eb0d7491-e91a-4bdc-afb0-a407de1af3a4 on TerminAttr (localhost), with timer 0:4:0(hr:min:sec).
+Apr 25 13:07:17 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-eb0d7491-e91a-4bdc-afb0-a407de1af3a4 on TerminAttr (localhost)
+Apr 25 13:07:29 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_SUCCESS: User cvpadmin committed configuration session CVP-configtask-eb0d7491-e91a-4bdc-afb0-a407de1af3a4 successfully on TerminAttr (localhost)
+Apr 25 13:07:31 P1 ConfigAgent: %SYS-5-CONFIG_STARTUP: Startup config saved from system:/running-config by cvpadmin on TerminAttr (localhost).
+Apr 25 13:10:44 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpsystem entered configuration session capiVerify-2215-1d9ddae6c49911ec9882020000000000 on TerminAttr (localhost)
+Apr 25 13:10:49 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpsystem exited configuration session capiVerify-2215-1d9ddae6c49911ec9882020000000000 on TerminAttr (localhost)
+Apr 25 13:10:49 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ABORTED: User cvpsystem aborted configuration session capiVerify-2215-1d9ddae6c49911ec9882020000000000 on TerminAttr (localhost)
+Apr 26 10:28:23 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpsystem entered configuration session capiVerify-2215-996e39b0c54b11ec9f71020000000000 on TerminAttr (localhost)
+Apr 26 10:28:27 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpsystem exited configuration session capiVerify-2215-996e39b0c54b11ec9f71020000000000 on TerminAttr (localhost)
+Apr 26 10:28:27 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ABORTED: User cvpsystem aborted configuration session capiVerify-2215-996e39b0c54b11ec9f71020000000000 on TerminAttr (localhost)
+May 10 09:09:17 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpsystem entered configuration session capiVerify-2215-de52483cd04011ec98eb020000000000 on TerminAttr (localhost)
+May 10 09:09:21 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpsystem exited configuration session capiVerify-2215-de52483cd04011ec98eb020000000000 on TerminAttr (localhost)
+May 10 09:09:22 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ABORTED: User cvpsystem aborted configuration session capiVerify-2215-de52483cd04011ec98eb020000000000 on TerminAttr (localhost)
+May 10 09:10:09 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpadmin entered configuration session CVP-configtask-6ed94316-f608-4891-98a1-7f9247c91fea on TerminAttr (localhost)
+May 10 09:10:14 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-6ed94316-f608-4891-98a1-7f9247c91fea on TerminAttr (localhost)
+May 10 09:10:17 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpadmin entered configuration session CVP-configtask-6ed94316-f608-4891-98a1-7f9247c91fea on TerminAttr (localhost)
+May 10 09:10:20 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_TIMER_STARTED: User cvpadmin committed session CVP-configtask-6ed94316-f608-4891-98a1-7f9247c91fea on TerminAttr (localhost), with timer 0:4:0(hr:min:sec).
+May 10 09:10:20 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-6ed94316-f608-4891-98a1-7f9247c91fea on TerminAttr (localhost)
+May 10 09:10:33 P1 ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_SUCCESS: User cvpadmin committed configuration session CVP-configtask-6ed94316-f608-4891-98a1-7f9247c91fea successfully on TerminAttr (localhost)
+May 10 09:10:36 P1 ConfigAgent: %SYS-5-CONFIG_STARTUP: Startup config saved from system:/running-config by cvpadmin on TerminAttr (localhost).

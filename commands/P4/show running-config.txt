@@ -1,0 +1,121 @@
+! Command: show running-config
+! device: P4 (vEOS-lab, EOS-4.27.3F)
+!
+! boot system flash:/vEOS-lab-4.27.3F.swi
+!
+no aaa root
+!
+username cvpadmin privilege 15 role network-admin secret sha512 $6$WRH0YV9I461XA.qn$BYsYGThSIHOh4ic8qdjnHWq9Zi/l0W8Ws4DZ5Y5yI3hBBWGP03W3ggXWdY7MTqVA8plRvaazG/U8CeMPkT5aE.
+username emil privilege 15 role network-admin secret sha512 $6$kiCAKn8fb8T12ClP$UchWUxo0y/CpYptWYxj7pC8uzjoUJnvi4lSg1c009mqJG2inlUDQdTi/YVY4M0dzgf4LOkaVtL7U11ZRkP7Rm/
+!
+alias cpuinfo bash cat /proc/cpuinfo
+alias meminfo bash cat /proc/meminfo
+!
+daemon TerminAttr
+   exec /usr/bin/TerminAttr -cvaddr=10.20.20.20:9910 -cvauth=key,dudeface -cvvrf=MGMT -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
+   no shutdown
+!
+vlan internal order ascending range 1006 1199
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname P4
+ip name-server vrf MGMT 8.8.8.8
+ip name-server vrf MGMT 10.20.20.13
+!
+spanning-tree mode none
+!
+vrf instance MGMT
+!
+management api http-commands
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
+!
+management security
+   password encryption-key common
+!
+interface Ethernet1
+   description P2P_LINK_TO_P3_Ethernet1
+   no switchport
+   ip address 100.64.48.11/31
+   isis enable CORE
+   isis circuit-type level-2
+   isis metric 50
+   no isis hello padding
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 $1c$sTNAlR6rKSw=
+!
+interface Ethernet2
+   description P2P_LINK_TO_PE-2B_Ethernet2
+   no switchport
+   ip address 100.64.48.14/31
+   isis enable CORE
+   isis circuit-type level-2
+   isis metric 50
+   no isis hello padding
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 $1c$sTNAlR6rKSw=
+!
+interface Ethernet3
+   description P2P_LINK_TO_P2_Ethernet3
+   no switchport
+   ip address 100.64.48.9/31
+   isis enable CORE
+   isis circuit-type level-2
+   isis metric 50
+   no isis hello padding
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 $1c$sTNAlR6rKSw=
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
+!
+interface Loopback0
+   description LSR_Router_ID
+   ip address 100.70.0.34/32
+   node-segment ipv4 index 304
+   isis enable CORE
+   isis passive
+!
+interface Management1
+   description oob_management
+   vrf MGMT
+   ip address 10.30.30.107/24
+!
+ip routing
+no ip routing vrf MGMT
+!
+ip route vrf MGMT 0.0.0.0/0 10.30.30.1
+!
+mpls ip
+!
+router isis CORE
+   net 49.0001.0000.0003.0004.00
+   router-id ipv4 100.70.0.34
+   is-type level-2
+   log-adjacency-changes
+   timers local-convergence-delay 15000 protected-prefixes
+   advertise passive-only
+   !
+   address-family ipv4 unicast
+      maximum-paths 4
+      fast-reroute ti-lfa mode link-protection
+   !
+   segment-routing mpls
+      no shutdown
+!
+end

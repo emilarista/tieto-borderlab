@@ -1,0 +1,4 @@
+Software image: flash:/vEOS-lab-4.27.3F.swi
+Console speed: (not set)
+Aboot password (encrypted): (not set)
+Memory test iterations: (not set)

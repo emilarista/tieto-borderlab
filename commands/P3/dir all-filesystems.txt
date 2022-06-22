@@ -1,0 +1,54 @@
+Directory of file:/
+
+       dr-x          80           Apr 12 14:12  bin
+       dr-x         234           Feb 28 13:40  boot
+       drwx        2940           Apr 12 14:11  dev
+       drwx        1180           May 10 09:10  etc
+       drwx          60           Apr 12 14:10  export
+       drwx          80           May 10 08:49  home
+       dr-x          60           Feb 28 13:41  lib
+       drwx        1178           Feb 28 13:41  lib64
+       drwx           3           Apr 11  2018  media
+       drwx          80           Apr 12 14:10  mnt
+       drwx           0           Apr 12 14:08  monitor
+       drwx          29           Feb 28 13:41  opt
+       drwx         100           Apr 12 14:11  persist
+       dr-x           0           Apr 12 14:08  proc
+       dr-x          60           Apr 12 14:21  root
+       dr-x         311           Feb 28 13:41  rootfs-i386
+       drwx        1340           Apr 12 14:24  run
+       dr-x          80           Apr 12 14:10  sbin
+       drwx           3           Apr 11  2018  srv
+       dr-x           0           Apr 12 14:10  sys
+       drwx         220           May 10 09:44  tmp
+       drwx         120           Feb 28 13:40  usr
+       drwx         100           Apr 12 14:11  var
+
+307904512 bytes total (227196928 bytes free)
+
+Directory of flash:/
+
+       -rw-        1386           Apr 12 14:11  AsuFastPktTransmit.log
+       drwx        4096           Apr 12 10:01  Fossil
+       -rw-         852           Apr 12 14:11  SsuRestore.log
+       -rw-         852           Apr 12 14:11  SsuRestoreLegacy.log
+       -rw-     7209797           Apr 12 14:05  TerminAttr-1.19.2-1.swix
+       -rw-          32           Apr 12 14:05  boot-config
+       -rw-          25           Apr 12 14:05  boot-extensions
+       drwx        4096           Apr 12 14:17  debug
+       drwx        4096            Apr 8 13:46  fastpkttx.backup
+       drwx       16384            Mar 2 12:51  lost+found
+       drwx        4096           May 10 09:47  persist
+       drwx        4096            Apr 8 13:50  schedule
+       -rw-        3251           May 10 09:10  startup-config
+       -rw-   495254600           Apr 12 14:04  vEOS-lab-4.27.3F.swi
+       -rw-   487567618            Mar 2 12:51  vEOS-lab.swi
+       -rw-           0           Apr 12 09:54  zerotouch-config
+
+4093313024 bytes total (2558406656 bytes free)
+
+Directory of system:/
+
+       -rw-        3180              <no date>  running-config
+
+No space information available

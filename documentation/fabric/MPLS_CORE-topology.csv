@@ -1,0 +1,9 @@
+Node Type,Node,Node Interface,Peer Type,Peer Node,Peer Interface,Node Interface Enabled
+rr,bb1,Ethernet1,other,dc1-bleaf1a,Ethernet4,True
+rr,bb1,Ethernet2,other,dc1-bleaf1b,Ethernet4,True
+rr,bb1,Ethernet4,pe,pe1,Ethernet1,True
+rr,bb2,Ethernet1,other,dc2-bleaf1a,Ethernet4,True
+rr,bb2,Ethernet2,other,dc2-bleaf1b,Ethernet4,True
+rr,bb2,Ethernet4,pe,pe2,Ethernet1,True
+pe,pe1,Ethernet1,rr,bb1,Ethernet4,True
+pe,pe2,Ethernet1,rr,bb2,Ethernet4,True

@@ -1,0 +1,12 @@
+---
+- name: Run EOS Snapshot
+  hosts: MPLS_CORE
+  connection: ansible.netcommon.network_cli
+  gather_facts: false
+
+  tasks:
+
+    - name: generate intended variables
+      tags: [build, provision, debug]
+      import_role:
+        name: arista.avd.eos_snapshot

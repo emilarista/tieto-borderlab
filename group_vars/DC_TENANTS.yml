@@ -1,0 +1,95 @@
+tenants:
+  TENANT_A:
+    l2vlans: {}
+    mac_vrf_vni_base: 10000
+    vrfs:
+      TENANT_A_OUTSIDE:
+        vrf_vni: 10
+        bgp_peers:
+          10.0.255.4:
+            remote_as: 1234
+            description: Firewall-outside
+            # password is DogeLet!
+            password: $1c$0gqqCt6BsFxvVktWYuvBGQ==
+            send_community: standard
+            maximum_routes: 10000
+            # set_ipv4_next_hop: 10.0.255.1
+            route_map_out: RM-TENANT_A_OUTSIDE_FW-OUT
+            route_map_in: RM-TENANT_A_OUTSIDE_FW-IN
+            nodes: [ dc1-sleaf1a, dc1-sleaf1b ]
+            # local_as: 65000
+          # 10.0.127.4:
+          #   remote_as: 12
+          #   description: EXT_NET
+          #   # password is DogeLet!
+          #   password: $1c$0gqqCt6BsFxvVktWYuvBGQ==
+          #   send_community: standard
+          #   maximum_routes: 10000
+          #   set_ipv4_next_hop: 10.0.127.1
+          #   nodes: [ dc1-leaf02a, dc1-leaf02b ]
+        svis:
+          1010:
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.0.255.1
+            nodes:
+              dc1-sleaf1a:
+                ip_address: 10.0.255.2/27
+              dc1-sleaf1b:
+                ip_address: 10.0.255.3/27
+            name: TENANT_A_OUTSIDE_FW
+            tags:
+            - fw_conn
+          # 2020:
+          #   enabled: true
+          #   name: OUTSIDE-ROUTER
+          #   ip_virtual_router_addresses:
+          #     - 10.0.127.1
+          #   nodes:
+          #     dc1-leaf02a:
+          #       ip_address: 10.0.127.2/27
+          #     dc1-leaf02b:
+          #       ip_address: 10.0.127.3/27
+          #   tags:
+          #   - ext_conn
+      TENANT_A_INSIDE:
+        vrf_vni: 11
+        bgp_peers:
+          10.0.254.4:
+            remote_as: 1234
+            description: Firewall-inside
+            # password is DogeLet!
+            password: $1c$0gqqCt6BsFxvVktWYuvBGQ==
+            send_community: standard
+            maximum_routes: 10000
+            # set_ipv4_next_hop: 10.0.254.1
+            route_map_out: RM-TENANT_A_INSIDE_FW-OUT
+            route_map_in: RM-TENANT_A_INSIDE_FW-IN
+            nodes: [ dc1-sleaf1a, dc1-sleaf1b ]
+            # local_as: 65001
+        svis:
+          10:
+            enabled: true
+            ip_address_virtual: 10.0.1.1/24
+            name: TENANT_A_INSIDE_L3_TEST_1
+            tags:
+            - dc
+          20:
+            enabled: true
+            ip_address_virtual: 10.0.2.1/24
+            name: TENANT_A_INSIDE_L3_TEST_2
+            tags:
+            - dc
+          1111:
+            enabled: true
+            name: FW-INSIDE
+            ip_virtual_router_addresses:
+              - 10.0.254.1
+            nodes:
+              dc1-sleaf1a:
+                ip_address: 10.0.254.2/27
+              dc1-sleaf1b:
+                ip_address: 10.0.254.3/27
+            tags:
+            - fw_conn
+

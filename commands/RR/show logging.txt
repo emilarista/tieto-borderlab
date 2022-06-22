@@ -1,0 +1,160 @@
+Syslog logging: enabled
+Buffer logging: level debugging
+Console logging: level errors
+Persistent logging: disabled
+Monitor logging: level errors
+Synchronous logging: disabled
+Trap logging: level informational
+Sequence numbers: disabled
+Syslog facility: local4
+Hostname format: Hostname only
+Repeat logging interval: disabled
+Repeat messages: disabled
+Root login logging: disabled
+
+External configuration:
+    active: 
+    inactive: 
+
+Facility                   Severity            Effective Severity
+--------------------       -------------       ------------------
+aaa                        debugging           debugging    
+accounting                 debugging           debugging    
+acl                        debugging           debugging    
+agent                      debugging           debugging    
+ale                        debugging           debugging    
+arp                        debugging           debugging    
+bfd                        debugging           debugging    
+bgp                        debugging           debugging    
+bmp                        debugging           debugging    
+capacity                   debugging           debugging    
+capi                       debugging           debugging    
+clear                      debugging           debugging    
+cvx                        debugging           debugging    
+dataplane                  debugging           debugging    
+dhcp                       debugging           debugging    
+dmf                        debugging           debugging    
+dot1x                      debugging           debugging    
+dot1xhttp                  debugging           debugging    
+dscp                       debugging           debugging    
+envmon                     debugging           debugging    
+eth                        debugging           debugging    
+eventmon                   debugging           debugging    
+extension                  debugging           debugging    
+fhrp                       debugging           debugging    
+flow                       debugging           debugging    
+forwarding                 debugging           debugging    
+fru                        debugging           debugging    
+fwk                        debugging           debugging    
+gmp                        debugging           debugging    
+hardware                   debugging           debugging    
+health                     debugging           debugging    
+httpservice                debugging           debugging    
+igmp                       debugging           debugging    
+igmpsnooping               debugging           debugging    
+influxtelemetry            debugging           debugging    
+int                        debugging           debugging    
+intf                       debugging           debugging    
+ip6routing                 debugging           debugging    
+iprib                      debugging           debugging    
+ira                        debugging           debugging    
+isis                       debugging           debugging    
+kernelfib                  debugging           debugging    
+lacp                       debugging           debugging    
+lag                        debugging           debugging    
+launcher                   debugging           debugging    
+ldp                        debugging           debugging    
+license                    debugging           debugging    
+lineproto                  debugging           debugging    
+lldp                       debugging           debugging    
+loadbalancer               debugging           debugging    
+logmgr                     debugging           debugging    
+loopback                   debugging           debugging    
+loopprotect                debugging           debugging    
+mapreducemonitor           debugging           debugging    
+mcs                        debugging           debugging    
+mirroring                  debugging           debugging    
+mka                        debugging           debugging    
+mlag                       debugging           debugging    
+mldsnooping                debugging           debugging    
+mmode                      debugging           debugging    
+mroute                     debugging           debugging    
+mrp                        debugging           debugging    
+msdp                       debugging           debugging    
+msrp                       debugging           debugging    
+msspolicymonitor           debugging           debugging    
+mvrp                       debugging           debugging    
+nat                        debugging           debugging    
+openconfig                 debugging           debugging    
+openflow                   debugging           debugging    
+ospf                       debugging           debugging    
+ospf3                      debugging           debugging    
+package                    debugging           debugging    
+pfc                        debugging           debugging    
+pimbsr                     debugging           debugging    
+portsecurity               debugging           debugging    
+postcardtelemetry          debugging           debugging    
+pseudowire                 debugging           debugging    
+ptp                        debugging           debugging    
+pwrmgmt                    debugging           debugging    
+qos                        debugging           debugging    
+queuemonitor               debugging           debugging    
+radius                     debugging           debugging    
+redundancy                 debugging           debugging    
+rib                        debugging           debugging    
+routing                    debugging           debugging    
+security                   debugging           debugging    
+servermonitor              debugging           debugging    
+spantree                   debugging           debugging    
+sso                        debugging           debugging    
+stagemgr                   debugging           debugging    
+sys                        debugging           debugging    
+sysdb                      debugging           debugging    
+tapagg                     debugging           debugging    
+tcp                        debugging           debugging    
+trafficpolicy              debugging           debugging    
+transceiver                debugging           debugging    
+tunnel                     debugging           debugging    
+tunnelintf                 debugging           debugging    
+vmtracersess               debugging           debugging    
+vmwarevi                   debugging           debugging    
+vmwarevs                   debugging           debugging    
+vrf                        debugging           debugging    
+vrrp                       debugging           debugging    
+vxlan                      debugging           debugging    
+xmpp                       debugging           debugging    
+ztp                        debugging           debugging    
+
+Log Buffer:
+May  9 16:10:21 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.13 (VRF default AS 64512) old state Established event OtherConfigurationChange new state Idle
+May  9 16:10:21 RR Bgp: %BGP-3-NOTIFICATION: sent to neighbor 100.70.0.14 (VRF default AS 64512) 6/6 (Cease/other configuration change <Hard Reset>) 0 bytes
+May  9 16:10:21 RR Bgp: %BGP-3-NOTIFICATION: sent to neighbor 100.70.0.11 (VRF default AS 64512) 6/6 (Cease/other configuration change <Hard Reset>) 0 bytes
+May  9 16:10:21 RR Bgp: %BGP-3-NOTIFICATION: sent to neighbor 100.70.0.13 (VRF default AS 64512) 6/6 (Cease/other configuration change <Hard Reset>) 0 bytes
+May  9 16:10:23 RR Bgp: %BGP-3-NOTIFICATION: sent to neighbor 100.70.0.11 (VRF default AS 64512) 6/7 (Cease/connection collision resolution) 0 bytes
+May  9 16:10:24 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.11 (VRF default AS 64512) old state OpenConfirm event Established new state Established
+May  9 16:10:25 RR Bgp: %BGP-3-NOTIFICATION: sent to neighbor 100.70.0.13 (VRF default AS 64512) 6/7 (Cease/connection collision resolution) 0 bytes
+May  9 16:10:25 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.13 (VRF default AS 64512) old state OpenConfirm event Established new state Established
+May  9 16:10:26 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.12 (VRF default AS 64512) old state OpenConfirm event Established new state Established
+May  9 16:10:26 RR Bgp: %BGP-3-NOTIFICATION: received from neighbor 100.70.0.12 (VRF default AS 64512) 6/6 (Cease/other configuration change <Hard Reset>) 0 bytes
+May  9 16:10:26 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.12 (VRF default AS 64512) old state Established event RecvHardReset new state Idle
+May  9 16:10:27 RR Bgp: %BGP-3-NOTIFICATION: received from neighbor 100.70.0.13 (VRF default AS 64512) 6/6 (Cease/other configuration change <Hard Reset>) 0 bytes
+May  9 16:10:27 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.13 (VRF default AS 64512) old state Established event RecvHardReset new state Idle
+May  9 16:10:28 RR Bgp: %BGP-3-NOTIFICATION: sent to neighbor 100.70.0.14 (VRF default AS 64512) 6/7 (Cease/connection collision resolution) 0 bytes
+May  9 16:10:28 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.14 (VRF default AS 64512) old state OpenConfirm event Established new state Established
+May  9 16:10:29 RR Bgp: %BGP-3-NOTIFICATION: received from neighbor 100.70.0.11 (VRF default AS 64512) 6/6 (Cease/other configuration change <Hard Reset>) 0 bytes
+May  9 16:10:29 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.11 (VRF default AS 64512) old state Established event RecvHardReset new state Idle
+May  9 16:10:30 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.12 (VRF default AS 64512) old state OpenConfirm event Established new state Established
+May  9 16:10:31 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.13 (VRF default AS 64512) old state OpenConfirm event Established new state Established
+May  9 16:10:32 RR Bgp: %BGP-5-ADJCHANGE: peer 100.70.0.11 (VRF default AS 64512) old state OpenConfirm event Established new state Established
+May  9 16:10:35 RR ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_SUCCESS: User cvpadmin committed configuration session CVP-configtask-ca4e2cf5-3c67-4939-8b0d-33998dca1836 successfully on TerminAttr (localhost)
+May  9 16:10:37 RR ConfigAgent: %SYS-5-CONFIG_STARTUP: Startup config saved from system:/running-config by cvpadmin on TerminAttr (localhost).
+May 10 09:09:13 RR ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpsystem entered configuration session capiVerify-2198-dc007be4d04011ecaa4550000015f4e8 on TerminAttr (localhost)
+May 10 09:09:16 RR ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpsystem exited configuration session capiVerify-2198-dc007be4d04011ecaa4550000015f4e8 on TerminAttr (localhost)
+May 10 09:09:16 RR ConfigAgent: %SYS-5-CONFIG_SESSION_ABORTED: User cvpsystem aborted configuration session capiVerify-2198-dc007be4d04011ecaa4550000015f4e8 on TerminAttr (localhost)
+May 10 09:10:09 RR ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpadmin entered configuration session CVP-configtask-5e75d462-2ff3-4826-b11b-2c76e3ccaee5 on TerminAttr (localhost)
+May 10 09:10:15 RR ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-5e75d462-2ff3-4826-b11b-2c76e3ccaee5 on TerminAttr (localhost)
+May 10 09:10:17 RR ConfigAgent: %SYS-5-CONFIG_SESSION_ENTERED: User cvpadmin entered configuration session CVP-configtask-5e75d462-2ff3-4826-b11b-2c76e3ccaee5 on TerminAttr (localhost)
+May 10 09:10:26 RR ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_TIMER_STARTED: User cvpadmin committed session CVP-configtask-5e75d462-2ff3-4826-b11b-2c76e3ccaee5 on TerminAttr (localhost), with timer 0:4:0(hr:min:sec).
+May 10 09:10:26 RR ConfigAgent: %SYS-5-CONFIG_SESSION_EXITED: User cvpadmin exited configuration session CVP-configtask-5e75d462-2ff3-4826-b11b-2c76e3ccaee5 on TerminAttr (localhost)
+May 10 09:10:39 RR ConfigAgent: %SYS-5-CONFIG_SESSION_COMMIT_SUCCESS: User cvpadmin committed configuration session CVP-configtask-5e75d462-2ff3-4826-b11b-2c76e3ccaee5 successfully on TerminAttr (localhost)
+May 10 09:10:42 RR ConfigAgent: %SYS-5-CONFIG_STARTUP: Startup config saved from system:/running-config by cvpadmin on TerminAttr (localhost).

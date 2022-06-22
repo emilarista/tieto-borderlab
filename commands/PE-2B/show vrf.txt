@@ -1,0 +1,11 @@
+Maximum number of VRFs allowed: 1024
+   VRF                  Protocols       State         Interfaces
+-------------------- --------------- ---------------- ----------
+   MGMT                 IPv4            no routing    Ma1       
+   MGMT                 IPv6            no routing              
+   TENANT_A_IPVPN       IPv4            routing       Et4       
+   TENANT_A_IPVPN       IPv6            no routing              
+   TENANT_A_L3VPN       IPv4            routing       Vl1002    
+   TENANT_A_L3VPN       IPv6            no routing              
+   default              IPv4            routing       Et2, Lo0  
+   default              IPv6            no routing

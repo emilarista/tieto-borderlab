@@ -1,0 +1,115 @@
+---
+all:
+  children:
+    DC_FABRIC:
+      children:
+        DC1:
+          children:
+            DC1_SPINES:
+              vars:
+                type: spine
+              hosts:
+                dc1-spine1:
+                  ansible_host: 10.83.31.240
+            DC1_L3LEAFS:
+              vars:
+                type: l3leaf
+              children:
+                DC1_POD1_SLEAFS:
+                  hosts:
+                    dc1-sleaf1a:
+                      ansible_host: 10.83.31.243
+                    dc1-sleaf1b:
+                      ansible_host: 10.83.31.244
+                DC1_POD1_CLEAFS:
+                  hosts:
+                    dc1-cleaf1:
+                      ansible_host: 10.83.31.245
+                DC1_BORDERS:
+                  hosts:
+                    dc1-bleaf1a:
+                      ansible_host: 10.83.31.237
+                    dc1-bleaf1b:
+                      ansible_host: 10.83.31.238
+
+        DC2:
+          children:
+            DC2_SPINES:
+              vars:
+                type: spine
+              hosts:
+                dc2-spine1:
+                  ansible_host: 10.83.31.242
+            DC2_L3LEAFS:
+              vars:
+                type: l3leaf
+              children:
+                DC2_POD1_SLEAFS:
+                  hosts:
+                    dc2-sleaf1a:
+                      ansible_host: 10.83.31.246
+                    dc2-sleaf1b:
+                      ansible_host: 10.83.31.247
+                DC2_BORDERS:
+                  hosts:
+                    dc2-bleaf1a:
+                      ansible_host: 10.83.31.239
+                    dc2-bleaf1b:
+                      ansible_host: 10.83.31.240
+
+    MPLS_CORE:
+      children:
+        PE_ROUTERS:
+          vars:
+            type: pe
+          hosts:
+            pe1:
+              ansible_host: 10.83.31.233
+            pe2:
+              ansible_host: 10.83.31.234
+        RR_ROUTERS:
+          vars:
+            type: rr
+          hosts:
+            bb1:
+              ansible_host: 10.83.31.235
+            bb2:
+              ansible_host: 10.83.31.236
+
+    # Tenants and stuff
+    MPLS_TENANTS:
+      children:
+        PE_ROUTERS:
+
+    DC_TENANTS:
+      children:
+        DC1_L3LEAFS:
+        DC2_L3LEAFS:
+
+    # Servers
+    DC_ENDPOINTS:
+      children:
+        DC1_L3LEAFS:
+        DC2_L3LEAFS:
+
+    MGMT_SETTINGS:
+      children:
+        MPLS_CORE:
+        DC_FABRIC:
+
+    LOCAL_USERS:
+      children:
+        MPLS_CORE:
+        DC_FABRIC:
+
+    CORE_INTERFACES:
+      children:
+        MPLS_CORE:
+        DC1_BORDERS:
+        DC2_BORDERS:
+
+    L3_BORDERS:
+      children:
+        DC1_BORDERS:
+        DC2_BORDERS:
+

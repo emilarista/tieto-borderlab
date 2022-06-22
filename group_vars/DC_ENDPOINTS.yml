@@ -1,0 +1,51 @@
+---
+port_profiles:
+  FW_PROFILE:
+    mode: trunk
+    vlans: 1010,1111
+    spanning_tree_portfast: edge
+    port_channel:
+      mode: active
+
+#   TENANT_B_SERVICES:
+#     mode: trunk
+#     vlans: 110,120,130
+#     spanning_tree_portfast: edge
+
+servers:
+
+  FIREWALL:
+    adapters:
+    - endpoint_ports:
+      - Ethernet1
+      - Ethernet2
+      switch_ports:
+      - Ethernet4
+      - Ethernet4
+      switches:
+      - dc1-sleaf1a
+      - dc1-sleaf1b
+      profile: FW_PROFILE
+      structured_config:
+        error_correction_encoding:
+          fire_code: true
+          reed_solomon: false
+          enabled: true
+      port_channel:
+        mode: active
+
+
+#   B_SERVER1:
+#     adapters:
+#     - endpoint_ports:
+#       - Ethernet1
+#       - Ethernet2
+#       switch_ports:
+#       - Ethernet4
+#       - Ethernet4
+#       switches:
+#       - dc1-leaf2a
+#       - dc1-leaf2b
+#       profile: TENANT_B_SERVICES
+#       port_channel:
+#         mode: active

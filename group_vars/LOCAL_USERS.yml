@@ -1,0 +1,22 @@
+---
+local_users:
+
+  admin:
+    privilege: 15
+    role: network-admin
+    no_password: true
+
+  switch-infra:
+    privilege: 15
+    no_password: true
+
+  cvp-infra:
+    privilege: 15
+    sha512_password: "$6$.I7/ZR/zlLIUv8fr$vR/JvLTbq5amMt6Y1SE4CKlPDv/AzJYlFYHkUZ17BDovm0Oi4aLdBULe1EmZ0Y9xKjVLMKpxCSKmlrAioDxbQ0"
+
+  ansible:
+    privilege: 15
+    role: network-admin
+    # password should be ansible
+    sha512_password: $6$tYUvq9vOikmr2wzF$9nUXlgG5xYINfUEPUl4sRgSEXpswnlnrRjTNDHUTFTquj6at4ze3ypxhEupp0lIJaIzlaFj4nJxWtKgSOuyuE1
+

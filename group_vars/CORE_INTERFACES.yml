@@ -1,0 +1,64 @@
+---
+# Core interfaces definition
+core_interfaces:
+  p2p_links_ip_pools:
+    - name: mpls_underlay_pool
+      ipv4_pool: 100.70.10.0/24
+    - name: bb_uplink_pool
+      ipv4_pool: 100.70.11.0/24
+  p2p_links_profiles:
+    - name: default_bb_profile
+      mtu: 1500
+      ip_pool: mpls_underlay_pool
+      # speed: "forced 10000full"
+      isis_hello_padding: false
+      isis_metric: 50
+      isis_circuit_type: level-2
+      # isis_authentication_mode: md5
+      # isis_authentication_key: $1c$sTNAlR6rKSw=
+    - name: bb_uplink_profile
+      mtu: 1500
+      ip_pool: bb_uplink_pool
+      mpls_gateway_uplink: true
+      include_in_underlay_protocol: false
+      isis_hello_padding: false
+      isis_metric: 50
+      isis_circuit_type: level-2
+
+  p2p_links:
+    ###########################
+    # dc1-bleafs uplinks
+    - nodes: [ dc1-bleaf1a, bb1 ]
+      id: 1
+      interfaces: [ Ethernet4, Ethernet1 ]
+      profile: bb_uplink_profile
+
+    - nodes: [ dc1-bleaf1b, bb1 ]
+      id: 2
+      interfaces: [ Ethernet4, Ethernet2 ]
+      profile: bb_uplink_profile
+
+    ###########################
+    # dc2-bleafs uplinks
+    - nodes: [ dc2-bleaf1a, bb2 ]
+      id: 3
+      interfaces: [ Ethernet4, Ethernet1 ]
+      profile: bb_uplink_profile
+
+    - nodes: [ dc2-bleaf1b, bb2 ]
+      id: 4
+      interfaces: [ Ethernet4, Ethernet2 ]
+      profile: bb_uplink_profile
+
+    ###########################
+    # mpls core links
+    - nodes: [ bb1, pe1 ]
+      id: 1
+      interfaces: [ Ethernet4, Ethernet1 ]
+      profile: default_bb_profile
+
+    - nodes: [ bb2, pe2 ]
+      id: 2
+      interfaces: [ Ethernet4, Ethernet1 ]
+      profile: default_bb_profile
+    ###########################

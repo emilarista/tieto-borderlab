@@ -1,0 +1,4 @@
+# custom_structured_configuration_tcam_profile:
+#   system: mpls-evpn-l2pf
+#   profiles:
+#     mpls-evpn-l2pf: "{{ lookup('file', 'tcam_profiles/mpls-evpn-l2pf.cfg') }}"

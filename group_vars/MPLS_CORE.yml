@@ -1,0 +1,91 @@
+---
+design:
+  type: "mpls"
+
+mgmt_gateway: 10.83.28.1
+
+# Fabric name, needs to match inventory group
+fabric_name: MPLS_CORE
+
+# ISIS
+underlay_routing_protocol: isis-sr
+
+isis_advertise_passive_only: true
+isis_ti_lfa:
+  enabled: true
+  protection: node
+
+# BGP
+# overlay_routing_protocol: ibgp  <== DEFAULT
+bgp_as: 65000
+bgp_peer_groups:
+  mpls_overlay_peers:
+    password: $1c$U4tL2vQP9QwZlxIV1K3/pw==
+  rr_overlay_peers:
+    password: $1c$U4tL2vQP9QwZlxIV1K3/pw==
+
+# Adjust default bfd values if desired.
+bfd_multihop:
+  interval: 12000
+  min_rx: 12000
+  multiplier: 3
+
+# PE Routers
+pe:
+  defaults:
+    virtual_router_mac_address: 00:1c:73:00:dc:00
+    platform: vEOS-Lab
+    loopback_ipv4_pool: 100.70.0.0/24
+    loopback_ipv4_offset: 10
+    # spanning_tree_priority: 4096
+    # spanning_tree_mode: none
+    overlay_address_families: [ vpn-ipv4 ]
+    node_sid_base: 1000
+    isis_system_id_prefix: '0000.0010'
+    bgp_defaults:
+      - 'no bgp default ipv4-unicast'
+      - 'distance bgp 20 200 200'
+      - 'graceful-restart restart-time 300'
+      - 'graceful-restart'
+    mpls_route_reflectors: [ bb1, bb2 ]
+  node_groups:
+    pe1:
+      filter:
+        tenants: [ all ]
+        tags: [ all ]
+      nodes:
+        pe1:
+          id: 1
+          mgmt_ip: 10.83.31.233/22
+    pe2:
+      filter:
+        tenants: [ all ]
+        tags: [ all ]
+      nodes:
+        pe2:
+          id: 2
+          mgmt_ip: 10.83.31.234/22
+
+rr:
+  defaults:
+    platform: vEOS-LAB
+    loopback_ipv4_pool: 100.70.0.0/24
+    overlay_address_families: [ vpn-ipv4 ]
+    node_sid_base: 1100
+    isis_system_id_prefix: '0000.0011'
+    bgp_defaults:
+      - 'no bgp default ipv4-unicast'
+      - 'distance bgp 20 200 200'
+      - 'graceful-restart restart-time 300'
+      - 'graceful-restart'
+      - 'bgp route-reflector preserve-attributes always'
+  node_groups:
+    bb1-2:
+      bgp_cluster_id: 1.2.1.2
+      nodes:
+        bb1:
+          id: 1
+          mgmt_ip: 10.83.31.235/22
+        bb2:
+          id: 2
+          mgmt_ip: 10.83.31.236/22

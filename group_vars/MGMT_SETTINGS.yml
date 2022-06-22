@@ -1,0 +1,32 @@
+---
+# Management settings
+# cvp_instance_ip: 10.83.29.224
+# cvp_ingestauth_key: IngestKey
+name_servers:
+  - 10.100.163.10
+
+dns_domain: lab.local
+
+management_security:
+  password:
+    encryption_key_common: true
+
+interface_defaults:
+  ethernet:
+    shutdown: true
+
+ntp:
+  servers:
+    - name: 10.100.163.10
+      vrf: MGMT
+
+ansible_connection: httpapi
+ansible_network_os: eos
+ansible_user: ansible
+# should use vault for passwords - leaving un-encrypted for ease of sharing for labs
+ansible_ssh_pass: ansible
+ansible_become: yes
+ansible_become_method: enable
+ansible_httpapi_use_ssl: true
+ansible_httpapi_validate_certs: false
+validation_mode_loose: true

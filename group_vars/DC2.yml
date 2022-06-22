@@ -1,0 +1,100 @@
+
+# Spine Switches
+spine:
+  defaults:
+    platform: vEOS-LAB
+    loopback_ipv4_pool: 100.64.11.0/24
+    uplink_ipv4_pool: 100.64.5.0/24
+    bgp_defaults:
+      - 'no bgp default ipv4-unicast'
+      - 'distance bgp 20 200 200'
+      - 'graceful-restart restart-time 300'
+      - 'graceful-restart'
+  nodes:
+    dc2-spine1:
+      bgp_as: "65002"
+      id: 1
+      mgmt_ip: 10.83.31.242/22
+
+l3leaf:
+  defaults:
+    virtual_router_mac_address: 00:1c:73:00:dc:00
+    platform: vEOS-LAB
+    loopback_ipv4_pool: 100.64.11.0/24
+    loopback_ipv4_offset: 10
+    vtep_loopback_ipv4_pool: 100.64.12.0/24
+    max_uplink_switches: 4
+    uplink_switches: [ dc2-spine1 ]
+    uplink_interfaces: [ Ethernet1 ]
+    uplink_ipv4_pool: 100.64.10.0/24
+    mlag_interfaces: [ Ethernet2, Ethernet3 ]
+    spanning_tree_priority: 4096
+    spanning_tree_mode: mstp
+    evpn_route_servers: [ dc2-spine1 ]
+    bgp_defaults:
+      - 'no bgp default ipv4-unicast'
+      - 'distance bgp 20 200 200'
+      - 'graceful-restart restart-time 300'
+      - 'graceful-restart'
+    mlag_peer_l3_ipv4_pool: 100.64.13.0/24
+    mlag_peer_ipv4_pool: 100.64.14.0/24
+  node_groups:
+    # Server leafs definition
+    dc2-sleaf1:
+      bgp_as: "65201"
+      filter:
+        tenants: [ all ]
+        tags: [ all ]
+      nodes:
+        dc2-sleaf1a:
+          id: 1
+          mgmt_ip: 10.83.31.246/22
+          uplink_switch_interfaces: [ Ethernet1 ]
+        dc2-sleaf1b:
+          id: 2
+          mgmt_ip: 10.83.31.247/22
+          uplink_switch_interfaces: [ Ethernet2 ]
+
+    # Border leafs definition
+    dc2-bleaf1:
+      bgp_as: "65203"
+      node_sid_base: 3200
+      isis_system_id_prefix: '0000.0032'
+      filter:
+        tenants: [ all ]
+        tags: [ all ]
+        always_include_vrfs_in_tenants: [ all ]
+      nodes:
+        dc2-bleaf1a:
+          id: 4
+          mgmt_ip: 10.83.31.239/22
+          uplink_switch_interfaces: [ Ethernet3 ]
+        dc2-bleaf1b:
+          id: 5
+          mgmt_ip: 10.83.31.240/22
+          uplink_switch_interfaces: [ Ethernet4 ]
+      evpn_gateway:
+        remote_peers:
+          - hostname: dc1-bleaf1a
+          - hostname: dc1-bleaf1b
+        evpn_l2:
+          enabled: true
+        evpn_l3:
+          enabled: true
+          inter_domain: true
+      mpls_vpn_gateway:
+        enabled: true
+        evpn_domain_id: "65000:1"
+        mpls_domain_id: "65000:2"
+        maximum_routes: 0
+        local_as: 65000 # Default is False
+        address_families: [ vpn-ipv4 ]
+        remote_peers:
+          - hostname: bb1
+            ip_address: 100.70.0.1
+            bgp_as: 65000
+          - hostname: bb2
+            ip_address: 100.70.0.2
+            bgp_as: 65000
+        mpls_tunnel_source: Loopback0 # Should be default
+        # mpls_underlay: "isis-sr"

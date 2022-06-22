@@ -1,0 +1,72 @@
+---
+# L3LS Fabric Values - update these values with caution,
+
+fabric_name: DC_FABRIC
+
+vtep_vvtep_ip: 100.64.255.255/32
+
+# bgp peer groups passwords
+bgp_peer_groups:
+  EVPN_OVERLAY_PEERS:
+    password: $1c$U4tL2vQP9QwZlxIV1K3/pw==
+  IPv4_UNDERLAY_PEERS:
+    password: $1c$U4tL2vQP9QwZlxIV1K3/pw==
+  MLAG_IPv4_UNDERLAY_PEER:
+    password: $1c$U4tL2vQP9QwZlxIV1K3/pw==
+  mpls_vpn_gateway_overlay_peers:
+    name: MPLS-VPN-RR-PEERS
+    password: $1c$U4tL2vQP9QwZlxIV1K3/pw==
+  evpn_overlay_core:
+    name: EVPN-DCI-GW-PEERS
+    password: $1c$U4tL2vQP9QwZlxIV1K3/pw==
+
+mpls_vpn_gateway_ebgp_multihop: 10
+
+internal_vlan_order:
+  allocation: ascending
+  range:
+    beginning: 3700
+    ending: 3900
+
+event_handlers:
+  evpn-blacklist-recovery:
+    action_type: bash
+    action: FastCli -p 15 -c "clear bgp evpn host-flap"
+    delay: 300
+    trigger: on-logging
+    regex:  EVPN-3-BLACKLISTED_DUPLICATE_MAC
+    asynchronous: true
+
+evpn_hostflap_detection:
+  enabled: true
+  threshold: 15
+
+p2p_uplinks_mtu: 1500
+
+evpn_overlay_bgp_rtc: true
+
+mgmt_gateway: 10.83.28.1
+
+# BGP max-paths and ecmp
+bgp_maximum_paths: 4
+bgp_ecmp: 4
+evpn_ebgp_multihop: 10
+
+# Configure route-map on eBGP sessions towards route-servers, where prefixes with the peer's ASN in the AS Path are filtered away.
+# This is very useful in very large scale networks, where convergence will be quicker by not having to return all updates received
+# from Route-server-1 to Router-server-2 just for Route-server-2 to throw them away because of AS Path loop detection.
+evpn_prevent_readvertise_to_server: true
+
+# Adjust default bfd values if desired.
+bfd_multihop:
+  interval: 12000
+  min_rx: 12000
+  multiplier: 3
+
+# Disable vlan aware bundles
+vxlan_vlan_aware_bundles: false
+
+evpn_rd_type:
+  admin_subfield: leaf_asn
+evpn_rt_type:
+  admin_subfield: 64512
