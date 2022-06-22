@@ -1,6 +1,17 @@
 ---
 all:
   children:
+    # Just some external routers
+    EXT_EOS_ROUTERS:
+      hosts:
+        FIREWALL:
+          ansible_host: 10.83.31.248
+        RTR-BLUE:
+          ansible_host: 10.83.31.231
+        RTR-RED:
+          ansible_host: 10.83.31.232
+
+    # AVD hosts
     DC_FABRIC:
       children:
         DC1:
@@ -10,7 +21,7 @@ all:
                 type: spine
               hosts:
                 dc1-spine1:
-                  ansible_host: 10.83.31.240
+                  ansible_host: 10.83.31.241
             DC1_L3LEAFS:
               vars:
                 type: l3leaf

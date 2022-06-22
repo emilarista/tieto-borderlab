@@ -1,6 +1,6 @@
 router_bgp:
   as: '65201'
-  router_id: 100.64.11.12
+  router_id: 100.64.21.12
   bgp_defaults:
   - no bgp default ipv4-unicast
   - distance bgp 20 200 200
@@ -39,14 +39,14 @@ router_bgp:
       EVPN-OVERLAY-PEERS:
         activate: false
   neighbors:
-    100.64.13.0:
+    100.64.23.0:
       peer_group: MLAG-IPv4-UNDERLAY-PEER
       description: dc2-sleaf1a
-    100.64.10.8:
+    100.64.20.8:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65002'
       description: dc2-spine1_Ethernet2
-    100.64.11.1:
+    100.64.21.1:
       peer_group: EVPN-OVERLAY-PEERS
       description: dc2-spine1
       remote_as: '65002'
@@ -67,40 +67,48 @@ router_bgp:
       EVPN-OVERLAY-PEERS:
         activate: true
   vrfs:
-    TENANT_A_INSIDE:
-      router_id: 100.64.11.12
-      rd: 100.64.11.12:11
+    BLUE:
+      router_id: 100.64.21.12
+      rd: 100.64.21.12:10
       route_targets:
         import:
           evpn:
-          - '64512:11'
+          - '64512:10'
         export:
           evpn:
-          - '64512:11'
+          - '64512:10'
       neighbors:
-        100.64.13.0:
+        100.64.23.0:
           peer_group: MLAG-IPv4-UNDERLAY-PEER
       redistribute_routes:
       - connected
-    TENANT_A_OUTSIDE:
-      router_id: 100.64.11.12
-      rd: 100.64.11.12:10
+    RED:
+      router_id: 100.64.21.12
+      rd: 100.64.21.12:11
       route_targets:
         import:
           evpn:
-          - '64512:10'
+          - '64512:11'
         export:
           evpn:
-          - '64512:10'
+          - '64512:11'
       neighbors:
-        100.64.13.0:
+        100.64.23.0:
           peer_group: MLAG-IPv4-UNDERLAY-PEER
       redistribute_routes:
       - connected
   vlans:
+    1010:
+      tenant: TENANT_A
+      rd: 100.64.21.12:11010
+      route_targets:
+        both:
+        - 64512:11010
+      redistribute_routes:
+      - learned
     10:
       tenant: TENANT_A
-      rd: 100.64.11.12:10010
+      rd: 100.64.21.12:10010
       route_targets:
         both:
         - 64512:10010
@@ -108,7 +116,7 @@ router_bgp:
       - learned
     20:
       tenant: TENANT_A
-      rd: 100.64.11.12:10020
+      rd: 100.64.21.12:10020
       route_targets:
         both:
         - 64512:10020
@@ -116,18 +124,10 @@ router_bgp:
       - learned
     1111:
       tenant: TENANT_A
-      rd: 100.64.11.12:11111
+      rd: 100.64.21.12:11111
       route_targets:
         both:
         - 64512:11111
-      redistribute_routes:
-      - learned
-    1010:
-      tenant: TENANT_A
-      rd: 100.64.11.12:11010
-      route_targets:
-        both:
-        - 64512:11010
       redistribute_routes:
       - learned
 static_routes:
@@ -178,10 +178,10 @@ local_users:
 vrfs:
   MGMT:
     ip_routing: false
-  TENANT_A_INSIDE:
+  BLUE:
     tenant: TENANT_A
     ip_routing: true
-  TENANT_A_OUTSIDE:
+  RED:
     tenant: TENANT_A
     ip_routing: true
 management_interfaces:
@@ -207,6 +207,14 @@ vlans:
     name: MLAG_PEER
     trunk_groups:
     - MLAG
+  1010:
+    tenant: TENANT_A
+    name: TENANT_A_OUTSIDE_FW
+  3009:
+    tenant: TENANT_A
+    name: MLAG_iBGP_BLUE
+    trunk_groups:
+    - LEAF_PEER_L3
   10:
     tenant: TENANT_A
     name: TENANT_A_INSIDE_L3_TEST_1
@@ -218,61 +226,20 @@ vlans:
     name: FW-INSIDE
   3010:
     tenant: TENANT_A
-    name: MLAG_iBGP_TENANT_A_INSIDE
-    trunk_groups:
-    - LEAF_PEER_L3
-  1010:
-    tenant: TENANT_A
-    name: TENANT_A_OUTSIDE_FW
-  3009:
-    tenant: TENANT_A
-    name: MLAG_iBGP_TENANT_A_OUTSIDE
+    name: MLAG_iBGP_RED
     trunk_groups:
     - LEAF_PEER_L3
 vlan_interfaces:
   Vlan4093:
     description: MLAG_PEER_L3_PEERING
     shutdown: false
-    ip_address: 100.64.13.1/31
+    ip_address: 100.64.23.1/31
     mtu: 1500
   Vlan4094:
     description: MLAG_PEER
     shutdown: false
-    ip_address: 100.64.14.1/31
+    ip_address: 100.64.24.1/31
     no_autostate: true
-    mtu: 1500
-  Vlan10:
-    tenant: TENANT_A
-    tags:
-    - dc
-    description: TENANT_A_INSIDE_L3_TEST_1
-    shutdown: false
-    vrf: TENANT_A_INSIDE
-    ip_address_virtual: 10.0.1.1/24
-  Vlan20:
-    tenant: TENANT_A
-    tags:
-    - dc
-    description: TENANT_A_INSIDE_L3_TEST_2
-    shutdown: false
-    vrf: TENANT_A_INSIDE
-    ip_address_virtual: 10.0.2.1/24
-  Vlan1111:
-    tenant: TENANT_A
-    tags:
-    - fw_conn
-    description: FW-INSIDE
-    shutdown: false
-    vrf: TENANT_A_INSIDE
-    ip_virtual_router_addresses:
-    - 10.0.254.1
-  Vlan3010:
-    tenant: TENANT_A
-    type: underlay_peering
-    shutdown: false
-    description: 'MLAG_PEER_L3_iBGP: vrf TENANT_A_INSIDE'
-    vrf: TENANT_A_INSIDE
-    ip_address: 100.64.13.1/31
     mtu: 1500
   Vlan1010:
     tenant: TENANT_A
@@ -280,16 +247,49 @@ vlan_interfaces:
     - fw_conn
     description: TENANT_A_OUTSIDE_FW
     shutdown: false
-    vrf: TENANT_A_OUTSIDE
+    vrf: BLUE
     ip_virtual_router_addresses:
     - 10.0.255.1
   Vlan3009:
     tenant: TENANT_A
     type: underlay_peering
     shutdown: false
-    description: 'MLAG_PEER_L3_iBGP: vrf TENANT_A_OUTSIDE'
-    vrf: TENANT_A_OUTSIDE
-    ip_address: 100.64.13.1/31
+    description: 'MLAG_PEER_L3_iBGP: vrf BLUE'
+    vrf: BLUE
+    ip_address: 100.64.23.1/31
+    mtu: 1500
+  Vlan10:
+    tenant: TENANT_A
+    tags:
+    - dc
+    description: TENANT_A_INSIDE_L3_TEST_1
+    shutdown: false
+    vrf: RED
+    ip_address_virtual: 10.0.1.1/24
+  Vlan20:
+    tenant: TENANT_A
+    tags:
+    - dc
+    description: TENANT_A_INSIDE_L3_TEST_2
+    shutdown: false
+    vrf: RED
+    ip_address_virtual: 10.0.2.1/24
+  Vlan1111:
+    tenant: TENANT_A
+    tags:
+    - fw_conn
+    description: FW-INSIDE
+    shutdown: false
+    vrf: RED
+    ip_virtual_router_addresses:
+    - 10.0.254.1
+  Vlan3010:
+    tenant: TENANT_A
+    type: underlay_peering
+    shutdown: false
+    description: 'MLAG_PEER_L3_iBGP: vrf RED'
+    vrf: RED
+    ip_address: 100.64.23.1/31
     mtu: 1500
 port_channel_interfaces:
   Port-Channel2:
@@ -330,11 +330,11 @@ ethernet_interfaces:
     mtu: 1500
     type: routed
     shutdown: false
-    ip_address: 100.64.10.9/31
+    ip_address: 100.64.20.9/31
 mlag_configuration:
   domain_id: dc2-sleaf1
   local_interface: Vlan4094
-  peer_address: 100.64.14.0
+  peer_address: 100.64.24.0
   peer_link: Port-Channel2
   reload_delay_mlag: 300
   reload_delay_non_mlag: 330
@@ -364,20 +364,20 @@ loopback_interfaces:
   Loopback0:
     description: EVPN_Overlay_Peering
     shutdown: false
-    ip_address: 100.64.11.12/32
+    ip_address: 100.64.21.12/32
   Loopback1:
     description: VTEP_VXLAN_Tunnel_Source
     shutdown: false
-    ip_address: 100.64.12.11/32
+    ip_address: 100.64.22.11/32
     ip_address_secondaries:
     - 100.64.255.255/32
 prefix_lists:
   PL-LOOPBACKS-EVPN-OVERLAY:
     sequence_numbers:
       10:
-        action: permit 100.64.11.0/24 eq 32
+        action: permit 100.64.21.0/24 eq 32
       20:
-        action: permit 100.64.12.0/24 eq 32
+        action: permit 100.64.22.0/24 eq 32
       30:
         action: permit 100.64.255.255/32
 router_bfd:
@@ -396,16 +396,16 @@ vxlan_interface:
       virtual_router_encapsulation_mac_address: mlag-system-id
       udp_port: 4789
       vlans:
+        1010:
+          vni: 11010
         10:
           vni: 10010
         20:
           vni: 10020
         1111:
           vni: 11111
-        1010:
-          vni: 11010
       vrfs:
-        TENANT_A_INSIDE:
-          vni: 11
-        TENANT_A_OUTSIDE:
+        BLUE:
           vni: 10
+        RED:
+          vni: 11

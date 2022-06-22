@@ -89,3 +89,16 @@ rr:
         bb2:
           id: 2
           mgmt_ip: 10.83.31.236/22
+      structured_config:
+        router_bgp:
+          neighbors:
+            100.64.11.14:
+              peer_group: MPLS-OVERLAY-PEERS
+            100.64.11.15:
+              peer_group: MPLS-OVERLAY-PEERS
+            100.64.21.14:
+              peer_group: MPLS-OVERLAY-PEERS
+            100.64.21.15:
+              peer_group: MPLS-OVERLAY-PEERS
+
+

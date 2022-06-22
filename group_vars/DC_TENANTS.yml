@@ -3,12 +3,12 @@ tenants:
     l2vlans: {}
     mac_vrf_vni_base: 10000
     vrfs:
-      TENANT_A_OUTSIDE:
+      BLUE:
         vrf_vni: 10
         bgp_peers:
           10.0.255.4:
             remote_as: 1234
-            description: Firewall-outside
+            description: Firewall-blue
             # password is DogeLet!
             password: $1c$0gqqCt6BsFxvVktWYuvBGQ==
             send_community: standard
@@ -52,12 +52,12 @@ tenants:
           #       ip_address: 10.0.127.3/27
           #   tags:
           #   - ext_conn
-      TENANT_A_INSIDE:
+      RED:
         vrf_vni: 11
         bgp_peers:
           10.0.254.4:
             remote_as: 1234
-            description: Firewall-inside
+            description: Firewall-red
             # password is DogeLet!
             password: $1c$0gqqCt6BsFxvVktWYuvBGQ==
             send_community: standard

@@ -243,6 +243,7 @@ interface defaults
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | P2P_LINK_TO_dc1-bleaf1a_Ethernet4 | routed | - | 100.70.11.1/31 | default | 1500 | false | - | - |
 | Ethernet2 | P2P_LINK_TO_dc1-bleaf1b_Ethernet4 | routed | - | 100.70.11.3/31 | default | 1500 | false | - | - |
+| Ethernet3 | P2P_LINK_TO_bb2_Ethernet3 | routed | - | 100.70.10.4/31 | default | 1500 | false | - | - |
 | Ethernet4 | P2P_LINK_TO_pe1_Ethernet1 | routed | - | 100.70.10.0/31 | default | 1500 | false | - | - |
 
 #### ISIS
@@ -251,6 +252,7 @@ interface defaults
 | --------- | ------------- | ------------- | ----------- | ---- | ----------------- | ------------- | ------------------- |
 | Ethernet1 | - | CORE | 50 | point-to-point | level-2 | False | - |
 | Ethernet2 | - | CORE | 50 | point-to-point | level-2 | False | - |
+| Ethernet3 | - | CORE | 50 | point-to-point | level-2 | False | - |
 | Ethernet4 | - | CORE | 50 | point-to-point | level-2 | False | - |
 
 ### Ethernet Interfaces Device Configuration
@@ -276,6 +278,19 @@ interface Ethernet2
    mtu 1500
    no switchport
    ip address 100.70.11.3/31
+   mpls ip
+   isis enable CORE
+   isis circuit-type level-2
+   isis metric 50
+   no isis hello padding
+   isis network point-to-point
+!
+interface Ethernet3
+   description P2P_LINK_TO_bb2_Ethernet3
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 100.70.10.4/31
    mpls ip
    isis enable CORE
    isis circuit-type level-2
@@ -404,6 +419,7 @@ ip route vrf MGMT 0.0.0.0/0 10.83.28.1
 | --------- | ------------- | ----------- | -------------- |
 | Ethernet1 | CORE | 50 | point-to-point |
 | Ethernet2 | CORE | 50 | point-to-point |
+| Ethernet3 | CORE | 50 | point-to-point |
 | Ethernet4 | CORE | 50 | point-to-point |
 | Loopback0 | CORE | - | passive |
 
@@ -483,6 +499,10 @@ router isis CORE
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- |
+| 100.64.11.14 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - |
+| 100.64.11.15 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - |
+| 100.64.21.14 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - |
+| 100.64.21.15 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - |
 | 100.70.0.2 | Inherited from peer group RR-OVERLAY-PEERS | default | - | Inherited from peer group RR-OVERLAY-PEERS | Inherited from peer group RR-OVERLAY-PEERS | - | Inherited from peer group RR-OVERLAY-PEERS | - |
 | 100.70.0.11 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - |
 | 100.70.0.12 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - |
@@ -515,6 +535,10 @@ router bgp 65000
    neighbor RR-OVERLAY-PEERS password 7 $1c$U4tL2vQP9QwZlxIV1K3/pw==
    neighbor RR-OVERLAY-PEERS send-community
    neighbor RR-OVERLAY-PEERS maximum-routes 0
+   neighbor 100.64.11.14 peer group MPLS-OVERLAY-PEERS
+   neighbor 100.64.11.15 peer group MPLS-OVERLAY-PEERS
+   neighbor 100.64.21.14 peer group MPLS-OVERLAY-PEERS
+   neighbor 100.64.21.15 peer group MPLS-OVERLAY-PEERS
    neighbor 100.70.0.2 peer group RR-OVERLAY-PEERS
    neighbor 100.70.0.2 description bb2
    neighbor 100.70.0.11 peer group MPLS-OVERLAY-PEERS
@@ -576,6 +600,7 @@ mpls ip
 | --------- | --------------- | ----------- | -------- |
 | Ethernet1 | True | - | - |
 | Ethernet2 | True | - | - |
+| Ethernet3 | True | - | - |
 | Ethernet4 | True | - | - |
 | Loopback0 | - | - | - |
 

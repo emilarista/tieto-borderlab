@@ -53,19 +53,7 @@ router_bgp:
       EVPN-OVERLAY-PEERS:
         activate: true
   vrfs:
-    TENANT_A_INSIDE:
-      router_id: 100.64.11.13
-      rd: 100.64.11.13:11
-      route_targets:
-        import:
-          evpn:
-          - '64512:11'
-        export:
-          evpn:
-          - '64512:11'
-      redistribute_routes:
-      - connected
-    TENANT_A_OUTSIDE:
+    BLUE:
       router_id: 100.64.11.13
       rd: 100.64.11.13:10
       route_targets:
@@ -77,7 +65,27 @@ router_bgp:
           - '64512:10'
       redistribute_routes:
       - connected
+    RED:
+      router_id: 100.64.11.13
+      rd: 100.64.11.13:11
+      route_targets:
+        import:
+          evpn:
+          - '64512:11'
+        export:
+          evpn:
+          - '64512:11'
+      redistribute_routes:
+      - connected
   vlans:
+    1010:
+      tenant: TENANT_A
+      rd: 100.64.11.13:11010
+      route_targets:
+        both:
+        - 64512:11010
+      redistribute_routes:
+      - learned
     10:
       tenant: TENANT_A
       rd: 100.64.11.13:10010
@@ -100,14 +108,6 @@ router_bgp:
       route_targets:
         both:
         - 64512:11111
-      redistribute_routes:
-      - learned
-    1010:
-      tenant: TENANT_A
-      rd: 100.64.11.13:11010
-      route_targets:
-        both:
-        - 64512:11010
       redistribute_routes:
       - learned
 static_routes:
@@ -157,10 +157,10 @@ local_users:
 vrfs:
   MGMT:
     ip_routing: false
-  TENANT_A_INSIDE:
+  BLUE:
     tenant: TENANT_A
     ip_routing: true
-  TENANT_A_OUTSIDE:
+  RED:
     tenant: TENANT_A
     ip_routing: true
 management_interfaces:
@@ -226,6 +226,9 @@ router_bfd:
     min_rx: 12000
     multiplier: 3
 vlans:
+  1010:
+    tenant: TENANT_A
+    name: TENANT_A_OUTSIDE_FW
   10:
     tenant: TENANT_A
     name: TENANT_A_INSIDE_L3_TEST_1
@@ -235,20 +238,26 @@ vlans:
   1111:
     tenant: TENANT_A
     name: FW-INSIDE
-  1010:
-    tenant: TENANT_A
-    name: TENANT_A_OUTSIDE_FW
 ip_igmp_snooping:
   globally_enabled: true
 ip_virtual_router_mac_address: 00:1c:73:00:dc:00
 vlan_interfaces:
+  Vlan1010:
+    tenant: TENANT_A
+    tags:
+    - fw_conn
+    description: TENANT_A_OUTSIDE_FW
+    shutdown: false
+    vrf: BLUE
+    ip_virtual_router_addresses:
+    - 10.0.255.1
   Vlan10:
     tenant: TENANT_A
     tags:
     - dc
     description: TENANT_A_INSIDE_L3_TEST_1
     shutdown: false
-    vrf: TENANT_A_INSIDE
+    vrf: RED
     ip_address_virtual: 10.0.1.1/24
   Vlan20:
     tenant: TENANT_A
@@ -256,7 +265,7 @@ vlan_interfaces:
     - dc
     description: TENANT_A_INSIDE_L3_TEST_2
     shutdown: false
-    vrf: TENANT_A_INSIDE
+    vrf: RED
     ip_address_virtual: 10.0.2.1/24
   Vlan1111:
     tenant: TENANT_A
@@ -264,18 +273,9 @@ vlan_interfaces:
     - fw_conn
     description: FW-INSIDE
     shutdown: false
-    vrf: TENANT_A_INSIDE
+    vrf: RED
     ip_virtual_router_addresses:
     - 10.0.254.1
-  Vlan1010:
-    tenant: TENANT_A
-    tags:
-    - fw_conn
-    description: TENANT_A_OUTSIDE_FW
-    shutdown: false
-    vrf: TENANT_A_OUTSIDE
-    ip_virtual_router_addresses:
-    - 10.0.255.1
 vxlan_interface:
   Vxlan1:
     description: dc1-cleaf1_VTEP
@@ -283,16 +283,16 @@ vxlan_interface:
       source_interface: Loopback1
       udp_port: 4789
       vlans:
+        1010:
+          vni: 11010
         10:
           vni: 10010
         20:
           vni: 10020
         1111:
           vni: 11111
-        1010:
-          vni: 11010
       vrfs:
-        TENANT_A_INSIDE:
-          vni: 11
-        TENANT_A_OUTSIDE:
+        BLUE:
           vni: 10
+        RED:
+          vni: 11

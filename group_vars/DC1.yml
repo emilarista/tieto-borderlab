@@ -14,7 +14,7 @@ spine:
     dc1-spine1:
       bgp_as: "65001"
       id: 1
-      mgmt_ip: 10.83.31.240/22
+      mgmt_ip: 10.83.31.241/22
 
 l3leaf:
   defaults:

@@ -4,7 +4,7 @@ l3leaf,dc1-bleaf1b,Ethernet1,100.64.10.33/31,spine,dc1-spine1,Ethernet5,100.64.1
 l3leaf,dc1-cleaf1,Ethernet1,100.64.10.17/31,spine,dc1-spine1,Ethernet3,100.64.10.16/31
 l3leaf,dc1-sleaf1a,Ethernet1,100.64.10.1/31,spine,dc1-spine1,Ethernet1,100.64.10.0/31
 l3leaf,dc1-sleaf1b,Ethernet1,100.64.10.9/31,spine,dc1-spine1,Ethernet2,100.64.10.8/31
-l3leaf,dc2-bleaf1a,Ethernet1,100.64.10.25/31,spine,dc2-spine1,Ethernet3,100.64.10.24/31
-l3leaf,dc2-bleaf1b,Ethernet1,100.64.10.33/31,spine,dc2-spine1,Ethernet4,100.64.10.32/31
-l3leaf,dc2-sleaf1a,Ethernet1,100.64.10.1/31,spine,dc2-spine1,Ethernet1,100.64.10.0/31
-l3leaf,dc2-sleaf1b,Ethernet1,100.64.10.9/31,spine,dc2-spine1,Ethernet2,100.64.10.8/31
+l3leaf,dc2-bleaf1a,Ethernet1,100.64.20.25/31,spine,dc2-spine1,Ethernet3,100.64.20.24/31
+l3leaf,dc2-bleaf1b,Ethernet1,100.64.20.33/31,spine,dc2-spine1,Ethernet4,100.64.20.32/31
+l3leaf,dc2-sleaf1a,Ethernet1,100.64.20.1/31,spine,dc2-spine1,Ethernet1,100.64.20.0/31
+l3leaf,dc2-sleaf1b,Ethernet1,100.64.20.9/31,spine,dc2-spine1,Ethernet2,100.64.20.8/31

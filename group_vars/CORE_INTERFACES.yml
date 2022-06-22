@@ -61,4 +61,9 @@ core_interfaces:
       id: 2
       interfaces: [ Ethernet4, Ethernet1 ]
       profile: default_bb_profile
+
+    - nodes: [ bb1, bb2 ]
+      id: 3
+      interfaces: [ Ethernet3, Ethernet3 ]
+      profile: default_bb_profile
     ###########################

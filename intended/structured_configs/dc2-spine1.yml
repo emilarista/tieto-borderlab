@@ -1,6 +1,6 @@
 router_bgp:
   as: '65002'
-  router_id: 100.64.11.1
+  router_id: 100.64.21.1
   bgp_defaults:
   - no bgp default ipv4-unicast
   - distance bgp 20 200 200
@@ -32,35 +32,35 @@ router_bgp:
     connected:
       route_map: RM-CONN-2-BGP
   neighbors:
-    100.64.10.1:
+    100.64.20.1:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65201'
       description: dc2-sleaf1a_Ethernet1
-    100.64.10.9:
+    100.64.20.9:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65201'
       description: dc2-sleaf1b_Ethernet1
-    100.64.10.25:
+    100.64.20.25:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65203'
       description: dc2-bleaf1a_Ethernet1
-    100.64.10.33:
+    100.64.20.33:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65203'
       description: dc2-bleaf1b_Ethernet1
-    100.64.11.14:
+    100.64.21.14:
       peer_group: EVPN-OVERLAY-PEERS
       description: dc2-bleaf1a
       remote_as: '65203'
-    100.64.11.15:
+    100.64.21.15:
       peer_group: EVPN-OVERLAY-PEERS
       description: dc2-bleaf1b
       remote_as: '65203'
-    100.64.11.11:
+    100.64.21.11:
       peer_group: EVPN-OVERLAY-PEERS
       description: dc2-sleaf1a
       remote_as: '65201'
-    100.64.11.12:
+    100.64.21.12:
       peer_group: EVPN-OVERLAY-PEERS
       description: dc2-sleaf1b
       remote_as: '65201'
@@ -139,7 +139,7 @@ ethernet_interfaces:
     mtu: 1500
     type: routed
     shutdown: false
-    ip_address: 100.64.10.0/31
+    ip_address: 100.64.20.0/31
   Ethernet2:
     peer: dc2-sleaf1b
     peer_interface: Ethernet1
@@ -148,7 +148,7 @@ ethernet_interfaces:
     mtu: 1500
     type: routed
     shutdown: false
-    ip_address: 100.64.10.8/31
+    ip_address: 100.64.20.8/31
   Ethernet3:
     peer: dc2-bleaf1a
     peer_interface: Ethernet1
@@ -157,7 +157,7 @@ ethernet_interfaces:
     mtu: 1500
     type: routed
     shutdown: false
-    ip_address: 100.64.10.24/31
+    ip_address: 100.64.20.24/31
   Ethernet4:
     peer: dc2-bleaf1b
     peer_interface: Ethernet1
@@ -166,17 +166,17 @@ ethernet_interfaces:
     mtu: 1500
     type: routed
     shutdown: false
-    ip_address: 100.64.10.32/31
+    ip_address: 100.64.20.32/31
 loopback_interfaces:
   Loopback0:
     description: EVPN_Overlay_Peering
     shutdown: false
-    ip_address: 100.64.11.1/32
+    ip_address: 100.64.21.1/32
 prefix_lists:
   PL-LOOPBACKS-EVPN-OVERLAY:
     sequence_numbers:
       10:
-        action: permit 100.64.11.0/24 eq 32
+        action: permit 100.64.21.0/24 eq 32
 route_maps:
   RM-CONN-2-BGP:
     sequence_numbers:

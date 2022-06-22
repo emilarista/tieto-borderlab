@@ -33,6 +33,7 @@
 
 | Type | Node | Node Interface | Peer Type | Peer Node | Peer Interface |
 | ---- | ---- | -------------- | --------- | ----------| -------------- |
+| rr | bb1 | Ethernet3 | rr | bb2 | Ethernet3 |
 | rr | bb1 | Ethernet4 | pe | pe1 | Ethernet1 |
 | rr | bb2 | Ethernet4 | pe | pe2 | Ethernet1 |
 
@@ -47,6 +48,7 @@
 
 | Node | Node Interface | Node IP Address | Peer Node | Peer Interface | Peer IP Address |
 | ---- | -------------- | --------------- | --------- | -------------- | --------------- |
+| bb1 | Ethernet3 | 100.70.10.4/31 | bb2 | Ethernet3 | 100.70.10.5/31 |
 | bb1 | Ethernet4 | 100.70.10.0/31 | pe1 | Ethernet1 | 100.70.10.1/31 |
 | bb2 | Ethernet4 | 100.70.10.2/31 | pe2 | Ethernet1 | 100.70.10.3/31 |
 

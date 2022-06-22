@@ -26,11 +26,6 @@ servers:
       - dc1-sleaf1a
       - dc1-sleaf1b
       profile: FW_PROFILE
-      structured_config:
-        error_correction_encoding:
-          fire_code: true
-          reed_solomon: false
-          enabled: true
       port_channel:
         mode: active
 

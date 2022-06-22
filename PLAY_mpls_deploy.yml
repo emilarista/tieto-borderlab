@@ -18,7 +18,7 @@
       tags: [build, generate, debug]
       import_role:
         name: arista.avd.eos_cli_config_gen
-      # when: structured_config.changed | arista.avd.default(true)
+      when: structured_config.changed | arista.avd.default(true)
 
     - name: deploy configuration to device
       tags: [deploy, never]
