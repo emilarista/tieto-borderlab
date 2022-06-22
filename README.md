@@ -1,3 +1,3 @@
 # Example Repo Documentation
 
-Project repo for JN L3 Border Lab and Anycast Border.
+Project repo for Tieto L3 Border IPVPN-EVPN interworking and EVPN DCI GW.
